@@ -1,0 +1,27 @@
+## Static configuration
+entryPoints:
+  web:
+    address: ":80"
+
+  websecure:
+    address: ":443"
+
+api:
+  dashboard: true
+  insecure: true
+  debug: true
+log:  
+  level: DEBUG
+  format: common
+
+providers:
+  # Enable the file provider to define routers / middlewares / services in file
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
+
+experimental:
+  plugins:
+    my-jwt-middleware:
+      moduleName: github.com/legege/jwt-validation-middleware
+      version: v0.2.1
