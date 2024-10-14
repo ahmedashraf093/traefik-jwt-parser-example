@@ -1,0 +1,16 @@
+tcp:
+  routers:
+    to-kafka:
+      entryPoints:
+        - "kafka"
+      # Catch every request (only available rule for non-tls routers. See below.)
+      rule: "HostSNI(`*`)"
+      service: kafka
+      tls: 
+        passthrough: true
+
+  services:
+    kafka:
+      loadBalancer:
+        servers:
+        - address: 10.114.0.6:9092
