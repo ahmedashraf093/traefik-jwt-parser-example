@@ -4,8 +4,10 @@ entryPoints:
     address: ":80"
   websecure:
     address: ":443"
-  tcp:
+  postgres:
     address: ":25060"
+  kafka:
+    address: ":9092"
 
 api:
   dashboard: true
