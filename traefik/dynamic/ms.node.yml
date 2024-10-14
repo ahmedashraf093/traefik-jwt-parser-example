@@ -1,0 +1,25 @@
+http:
+
+  routers:
+    # Define a connection between requests and services
+    to-ms.node:
+      rule: "PathPrefix(`/ms.node/`)"
+      # If the rule matches, forward to the whoami service (declared below)
+      service: ms.node
+      middlewares:
+        test-stripprefix
+
+
+  services:
+    # Define how to reach an existing service on our infrastructure
+    ms.node:
+      loadBalancer:
+        passHostHeader: false
+        servers:
+        - url: http://10.114.0.5
+
+  middlewares:
+    test-stripprefix:
+      stripPrefix:
+        prefixes:
+          - "/ms.node"

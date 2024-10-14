@@ -1,0 +1,16 @@
+tcp:
+  routers:
+    to-postgres:
+      entryPoints:
+        - "tcp"
+      # Catch every request (only available rule for non-tls routers. See below.)
+      rule: "HostSNI(`*`)"
+      service: postgres
+      tls: 
+        passthrough: true
+
+  services:
+    postgres:
+      loadBalancer:
+        servers:
+        - address: 10.114.0.3:25060

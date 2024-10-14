@@ -2,14 +2,16 @@
 entryPoints:
   web:
     address: ":80"
-
   websecure:
     address: ":443"
+  tcp:
+    address: ":25060"
 
 api:
   dashboard: true
   insecure: true
   debug: true
+
 log:  
   level: DEBUG
   format: common
